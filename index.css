@@ -1,0 +1,15 @@
+#objectButtonsWrapper{
+    background-color: yellow;
+    width: 100px;
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+#objectsTitle{
+    color: rgb(12, 22, 32);
+}
+#objectButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
