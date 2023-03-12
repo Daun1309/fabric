@@ -19,16 +19,12 @@ h1{
 
 div.container{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     .section01{
         display: flex;
         flex-direction: column;
     }
     .section02{
-        display: flex;
-        flex-direction: column;
-    }
-    .section03{
         display: flex;
         flex-direction: column;
         div{
@@ -45,6 +41,7 @@ div.container{
                     background-repeat: no-repeat;
                     background-size: cover;
                     object-fit: fill;
+                    margin: 20px;
                 }
             }
         }
@@ -52,8 +49,8 @@ div.container{
 }
 div.canvas-box{
     border: 1px solid #000;
-    width: 531px;
-    height: 682px;
+    width: 532px;
+    height: 672px;
     margin: 0px auto;
     position: relative;
 

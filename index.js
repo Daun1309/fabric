@@ -3,9 +3,9 @@
 const initCanvas = (id) => {
     return new fabric.Canvas(id,{
         width: 530,
-        height: 680,
+        height: 670,
         selection: false,
-        //backgroundColor: '#EEEAE6'
+        backgroundColor: '#FFFFFF'
     })
 }
 
@@ -36,8 +36,7 @@ const toggleMode = (mode) => {
             canvas.isDrawingMode = false
             canvas.renderAll()
         }else{
-            //canvas.freeDrawingBrush.color = color 
-
+            canvas.freeDrawingBrush.width = 8
             currentMode = modes.drawing
             canvas.isDrawingMode = true
             canvas.renderAll()
@@ -66,8 +65,6 @@ const setPanEvents  = (canvas) => {
         if(currentMode === modes.pan){
             canvas.setCursor('grap');
             canvas.renderAll();
-            // canvas.isDrawingMode = true;
-            // canvas.selection = false;
         }
     })
     
@@ -80,17 +77,6 @@ const setPanEvents  = (canvas) => {
     })
 }
 
-// canvas.on('mouse:move', function(e) {
-//     var activeObject = canvas.getActiveObject();
-//     if (activeObject && activeObject.lockMovementX) {
-//       var pointer = canvas.getPointer(e.e);
-//       if (activeObject.containsPoint(pointer)) {
-//         canvas.defaultCursor = 'not-allowed';
-//       } else {
-//         canvas.defaultCursor = 'default';
-//       }
-//     }
-//   });
 
 var lockButton = document.getElementById('lockButton');
 lockButton.onclick = function() {
