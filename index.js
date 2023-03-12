@@ -2,21 +2,22 @@
 //캔버스 초기 설정
 const initCanvas = (id) => {
     return new fabric.Canvas(id,{
-        width: 500,
-        height: 200,
+        width: 530,
+        height: 680,
         selection: false,
-        // backgroundColor: 'red'
+        //backgroundColor: '#EEEAE6'
     })
 }
 
-//배그라운드 이미지 설정
-const setBackground = (url, canvas) => {
-    fabric.Image.fromURL(url, (img) => {
-        canvas.backgroundImage = img;
-        // img.crossOrigin = 'Anonymous';
-        canvas.renderAll();
-    })
-}
+// //배그라운드 이미지 설정
+// const setBackground = (url, canvas) => {
+//     fabric.Image.fromURL(url, (img) => {
+//         canvas.backgroundImage = img;
+//         canvas.renderAll();
+//     })
+// }
+
+
 
 
 //배경 움직이기, 그리기
@@ -79,6 +80,30 @@ const setPanEvents  = (canvas) => {
     })
 }
 
+// canvas.on('mouse:move', function(e) {
+//     var activeObject = canvas.getActiveObject();
+//     if (activeObject && activeObject.lockMovementX) {
+//       var pointer = canvas.getPointer(e.e);
+//       if (activeObject.containsPoint(pointer)) {
+//         canvas.defaultCursor = 'not-allowed';
+//       } else {
+//         canvas.defaultCursor = 'default';
+//       }
+//     }
+//   });
+
+var lockButton = document.getElementById('lockButton');
+lockButton.onclick = function() {
+    var activeObject = canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.lockMovementX = !activeObject.lockMovementX;
+      activeObject.lockMovementY = !activeObject.lockMovementY;
+      activeObject.hasControls = !activeObject.hasControls;
+      activeObject.hasBorders = !activeObject.hasBorders;
+      lockButton.innerText = activeObject.lockMovementX ? '이미지 해제하기' : '이미지 잠금하기';
+      canvas.renderAll();
+    }
+  };
 //그리는 색 정하기
 const setColorListener = () => {
     const picker = document.getElementById("colorPicker")
@@ -97,40 +122,40 @@ const clearCanvas = (canvas) => {
     })
 }
 
-//사각형
-const createRect = (canvas) => {
-    const canvasCenter = canvas.getCenter()
-    const rect = new fabric.Rect({
-        width: 100,
-        height: 100,
-        fill: 'green',
-        left: canvasCenter.left,
-        top: canvasCenter.top,
-        // top: -50,
-        originX: "center",
-        originY: "center"
-    })
-    canvas.add(rect)
-    canvas.renderAll()
-    // rect.animate('top',canvasCenter.top,{
-    //     onchange: canvas.renderAll.bind(canvas)
-    // })
-}
+// //사각형
+// const createRect = (canvas) => {
+//     const canvasCenter = canvas.getCenter()
+//     const rect = new fabric.Rect({
+//         width: 100,
+//         height: 100,
+//         fill: 'green',
+//         left: canvasCenter.left,
+//         top: canvasCenter.top,
+//         // top: -50,
+//         originX: "center",
+//         originY: "center"
+//     })
+//     canvas.add(rect)
+//     canvas.renderAll()
+//     // rect.animate('top',canvasCenter.top,{
+//     //     onchange: canvas.renderAll.bind(canvas)
+//     // })
+// }
 
-//원
-const createCirc = (canvas) => {
-    const canvasCenter = canvas.getCenter()
-    const circle = new fabric.Circle({
-        radius: 50,
-        fill: 'orange',
-        left: canvasCenter.left,
-        top: canvasCenter.top,
-        originX: "center",
-        originY: "center"
-    })
-    canvas.add(circle)
-    canvas.renderAll()
-}
+// //원
+// const createCirc = (canvas) => {
+//     const canvasCenter = canvas.getCenter()
+//     const circle = new fabric.Circle({
+//         radius: 50,
+//         fill: 'orange',
+//         left: canvasCenter.left,
+//         top: canvasCenter.top,
+//         originX: "center",
+//         originY: "center"
+//     })
+//     canvas.add(circle)
+//     canvas.renderAll()
+// }
 
 //그룹하기, 그룹풀기
 const groupObjects = (canvas, group, shouldGroup) => {
@@ -150,6 +175,8 @@ const groupObjects = (canvas, group, shouldGroup) => {
         canvas.requestRenderAll()
     }
 }
+
+
 
 //이미지파일 업로드
 const imgAdded = (e) => {
@@ -185,7 +212,7 @@ const modes = {
 
 const reader = new FileReader()
 
-setBackground("https://ifh.cc/g/x21XKT.jpg", canvas);
+//  setBackground("https://ifh.cc/g/QKyd5Y.png", canvas);
 
 setPanEvents(canvas);
 
@@ -203,27 +230,22 @@ reader.addEventListener("load",() => {
 })
 
 
-//스티커
-const addButton = document.getElementById('add-image-button');
-addButton.addEventListener('click', () => {
-  fabric.Image.fromURL('https://ifh.cc/g/7J9o2a.png', (image) => {
-    canvas.add(image);
-  });
-});
+
+
 
 //이미지 복사
-const saveBtn = document.getElementById('copy');
+// const saveBtn = document.getElementById('copy');
 
 
-    function createImage(event) {
-    const dataURL = canvas.toDataURL('png');
-    const img = new Image();
-    img.src = dataURL;
-    document.body.appendChild(img);
-    }
+//     function createImage(event) {
+//     const dataURL = canvas.toDataURL('png');
+//     const img = new Image();
+//     img.src = dataURL;
+//     document.body.appendChild(img);
+//     }
 
 
-saveBtn.addEventListener('click', createImage);
+// saveBtn.addEventListener('click', createImage);
 
 //이미지로 저장
 document.querySelector('a').addEventListener('click',(event) =>{
@@ -231,4 +253,16 @@ document.querySelector('a').addEventListener('click',(event) =>{
     // crossOrigin = "Anonymous"
     event.target.href = canvas.toDataURL()
         
+});
+
+//스티커
+const addButtons = document.querySelectorAll('.add-image-button');
+
+addButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const imagePath = button.dataset.imagePath;
+    fabric.Image.fromURL(imagePath, (image) => {
+      canvas.add(image);
+    });
+  });
 });

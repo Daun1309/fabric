@@ -8,37 +8,88 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <h1>hello</h1>
-    <button onclick="toggleMode(modes.pan)">배경 조절하기</button>
-    <button onclick="toggleMode(modes.drawing)">그리기</button>
-    <input id="colorPicker" value="#000" data-jscolor=""/>
-    <button onclick="clearCanvas(canvas)">캔버스 지우기</button>
 
-    <canvas id="canvas"></canvas>
+    <h1>청첩장만들기</h1>
+    
+    <div class="container">
+        <section class="section01">
+            <button onclick="toggleMode(modes.pan)" id="lockButton">이미지 잠금하기</button>
+            <!-- <button onclick="toggleMode(modes.pan)">배경 조절하기</button> -->
+            <input id="myImg" type="file" accept="image/*"/>
+            <input type="text" id="text-input">
+            <button id="add-text">Add Text</button>
+            <button onclick="toggleMode(modes.drawing)">그리기</button>
+            <input id="colorPicker" value="#000" data-jscolor=""/>
+            <button onclick="groupObjects(canvas, group, true)">그룹</button>
+            <button onclick="groupObjects(canvas, group, false)">그룹 풀기</button>
+        </section>
+        
+        <section class="section0">
+            <button onclick="clearCanvas(canvas)">캔버스 지우기</button>
+            <div class="canvas-box">
+                <canvas id="canvas"></canvas>
+            </div>
+            <button id="copy">이미지로 만들기</button>
+            <a id="downloadBtn" href="" download="my_painting.png">다운로드</a>
+        </section>
+    
+        <section class="section03">
+            <div>
+                <button class="add-image-button" data-image-path="./img/img01.png">
+                    <img src="./img/img01.png"/>
+                </button>
+                <button class="add-image-button" data-image-path="./img/img02.png">
+                    <img src="./img/img02.png"/>
+                </button>
+                <button class="add-image-button" data-image-path="./img/img03.png">
+                    <img src="./img/img03.png"/>
+                </button>
+                <button class="add-image-button" data-image-path="./img/img04.png">
+                    <img src="./img/img04.png"/>
+                </button>
+                <button class="add-image-button" data-image-path="./img/img05.png">
+                    <img src="./img/img05.png"/>
+                </button>
+            </div>
+            <div>
+                <button class="add-image-button" data-image-path="./img/img10.png">
+                    <img src="./img/img10.png"/>
+                </button>
+                <button class="add-image-button" data-image-path="./img/img06.png">
+                    <img src="./img/img06.png"/>
+                </button>
+                <button class="add-image-button" data-image-path="./img/img07.png">
+                    <img src="./img/img07.png"/>
+                </button>
+                <button class="add-image-button" data-image-path="./img/img08.png">
+                    <img src="./img/img08.png"/>
+                </button>
+                <button class="add-image-button" data-image-path="./img/img09.png">
+                    <img src="./img/img09.png"/>
+                </button>
+            </div>
+            <div>
+                <button class="add-image-button" data-image-path="./img/img11.png">
+                    <img src="./img/img11.png"/>
+                </button>
+                <button class="add-image-button" data-image-path="./img/img12.png">
+                    <img src="./img/img12.png"/>
+                </button>
+                <button class="add-image-button" data-image-path="./img/img13.png">
+                    <img src="./img/img13.png"/>
+                </button>
+                <button class="add-image-button" data-image-path="./img/img14.png">
+                    <img src="./img/img14.png"/>
+                </button>
+                <button class="add-image-button" data-image-path="./img/img55.png">
+                    <img src="./img/img15.png"/>
+                </button>
+            </div>
+            
+            
 
-    <div id="objectButtonsWrapper">
-        <p id="objectsTitle">Object</p>
-        <div id="objectButtons">
-            <button onclick="createRect(canvas)">사닫형</button>
-            <button onclick="createCirc(canvas)">원</button> 
-        </div>
+        </section>
     </div>
-    <button onclick="groupObjects(canvas, group, true)">그룹</button>
-    <button onclick="groupObjects(canvas, group, false)">그룹 풀기</button>
-
-    <input id="myImg" type="file" accept="image/*"/>
-
-    <button id="add-image-button">Add Image</button>
-
-    <input type="text" id="text-input">
-    <button id="add-text">Add Text</button>
-
-    <button id="copy">이미지로 만들기</button>
-    <a id="downloadBtn" href="" download="my_painting.png">다운로드</a>
-
-    <!-- <button id="downloadBtn">다운로드</button> -->
-
-
 
 
     <script src="./lib/jscolor.js"></script>
@@ -46,3 +97,12 @@
     <script src="./index.js"></script>
 </body>
 </html>
+
+   
+    <!-- <div id="objectButtonsWrapper">
+        <p id="objectsTitle">Object</p>
+        <div id="objectButtons">
+            <button onclick="createRect(canvas)">사닫형</button>
+            <button onclick="createCirc(canvas)">원</button> 
+        </div>
+    </div> -->
