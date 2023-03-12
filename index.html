@@ -20,32 +20,38 @@
         </section>
     
         <section class="section02">
-            <p>사진선택</p>
-            <div>
-                <input id="myImg" type="file" accept="image/*"/>
+            <p>🪄 사진선택</p>
+            <div class="bgC">
+                <label for="myImg" class="custom-file-upload">
+                    사진 업로드
+                </label>
+                <input id="myImg" type="file" name="file" accept="image/*"/>
+                <button onclick="toggleMode(modes.pan)" id="lockButton">
+                    배경잠금 🔒
+                </button>
             </div>
             
-            <button onclick="toggleMode(modes.pan)" id="lockButton">이미지 잠금하기</button>
-            <p>문구추가</p>
-            <div>
+            <p>🪄 글 추가하기</p>
+            <div class="text">
                 <input type="text" id="text-input">
                 <button id="add-text">추가하기</button>
             </div>
 
 
-            <p>그림그리기</p>
-            <div>
-                <button onclick="toggleMode(modes.drawing)">그리기</button>
+            <p>🪄 그림그리기</p>
+            <div class="draw">
+                <button onclick="toggleMode(modes.drawing)" id="DButton">그리기📝</button>
                 <input id="colorPicker" value="#000" data-jscolor=""/>
             </div>
             
-            <div>
+            <p>🪄 그룹하기</p>
+            <div class="groupBtn">
                 <button onclick="groupObjects(canvas, group, true)">그룹</button>
                 <button onclick="groupObjects(canvas, group, false)">그룹 풀기</button>
             </div>
             
-            <p>스티커</p>
-            <div>
+            <p>🪄 스티커</p>
+            <div class="sticker">
                 <button class="add-image-button" data-image-path="./img/img01.png">
                     <img src="./img/img01.png"/>
                 </button>
@@ -62,7 +68,7 @@
                     <img src="./img/img05.png"/>
                 </button>
             </div>
-            <div>
+            <div class="sticker">
                 <button class="add-image-button" data-image-path="./img/img10.png">
                     <img src="./img/img10.png"/>
                 </button>
@@ -79,7 +85,7 @@
                     <img src="./img/img09.png"/>
                 </button>
             </div>
-            <div>
+            <div class="sticker">
                 <button class="add-image-button" data-image-path="./img/img11.png">
                     <img src="./img/img11.png"/>
                 </button>

@@ -17,9 +17,7 @@ const initCanvas = (id) => {
 //     })
 // }
 
-
-
-
+const DButton = document.getElementById('DButton');
 //배경 움직이기, 그리기
 const toggleMode = (mode) => {
     if(mode === modes.pan){
@@ -35,11 +33,13 @@ const toggleMode = (mode) => {
             currentMode = ''
             canvas.isDrawingMode = false
             canvas.renderAll()
+            DButton.innerText = "그리기📝"
         }else{
             canvas.freeDrawingBrush.width = 8
             currentMode = modes.drawing
             canvas.isDrawingMode = true
             canvas.renderAll()
+            DButton.innerText = "그만🗒️"
         }
     }
 }
@@ -77,8 +77,8 @@ const setPanEvents  = (canvas) => {
     })
 }
 
-
-var lockButton = document.getElementById('lockButton');
+//잠금,풀기
+const lockButton = document.getElementById('lockButton');
 lockButton.onclick = function() {
     var activeObject = canvas.getActiveObject();
     if (activeObject) {
@@ -86,7 +86,7 @@ lockButton.onclick = function() {
       activeObject.lockMovementY = !activeObject.lockMovementY;
       activeObject.hasControls = !activeObject.hasControls;
       activeObject.hasBorders = !activeObject.hasBorders;
-      lockButton.innerText = activeObject.lockMovementX ? '이미지 해제하기' : '이미지 잠금하기';
+      lockButton.innerText = activeObject.lockMovementX ? '잠금풀기 🔓' : '배경잠금 🔒';
       canvas.renderAll();
     }
   };
@@ -183,6 +183,7 @@ document.getElementById('add-text').addEventListener('click', function() {
       fill: 'black'
     });
     canvas.add(newText);
+    document.getElementById('text-input').value = '';
   });
 
 const canvas = initCanvas('canvas');
@@ -216,22 +217,6 @@ reader.addEventListener("load",() => {
 })
 
 
-
-
-
-//이미지 복사
-// const saveBtn = document.getElementById('copy');
-
-
-//     function createImage(event) {
-//     const dataURL = canvas.toDataURL('png');
-//     const img = new Image();
-//     img.src = dataURL;
-//     document.body.appendChild(img);
-//     }
-
-
-// saveBtn.addEventListener('click', createImage);
 
 //이미지로 저장
 document.querySelector('a').addEventListener('click',(event) =>{
